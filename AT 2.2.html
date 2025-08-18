@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AT 2</title>
+</head>
+<body>
+    <h1>Hello Bounteous</h1>
+</body>
+    <script>
+        function fetchw(call){
+            fetch('https://api.open-meteo.com/v1/forecast?latitude=13.0878&longitude=80.2785&hourly=temperature_2m&forecast_days=1')
+            .then(response => response.json())
+            .then(data => {
+                call(data,null)
+            })
+            .catch(error => {
+                call(null,error)
+            })
+        }
+
+        function handle(data,error){
+            if(error){
+                console.error("Error fetching weather data:", error);
+                return;
+            }
+
+            const temperature = data.hourly.temperature_2m;
+            const avg = temperature.reduce((sum, temp) => sum + temp, 0) / temperature.length;
+            console.log("Current temperature:", temperature[temperature.length - 1]);
+            console.log("Average temperature:", avg);
+        }
+        fetchw(handle);
+    </script>
+</html>

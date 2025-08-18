@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AT 2</title>
+</head>
+<body>
+    <h1>Hello Bounteous</h1>
+</body>
+    <script>
+        function bankAcc(balance=0){
+            let a=balance;
+
+            this.getBalance = function(){
+                return a;
+            }
+
+            this.add_balance = function(amount){
+                a += amount;
+                return a;
+            }
+
+            this.remove_balance = function(amount){
+                if (amount-a > 0) {
+                    console.log("Insufficient balance");
+                    return a;
+                }
+                a -= amount;
+                return a;
+            }
+        }
+            const acc=new bankAcc(1000);
+            acc.add_balance(500);
+            console.log(acc.getBalance());
+            acc.remove_balance(200);
+            console.log(acc.getBalance());
+        
+    </script>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AT 2</title>
+</head>
+<body>
+    <h1>Hello Bounteous</h1>
+</body>
+    <script>
+        async function fetchdata(){
+            let apidata=await fetch('https://api.github.com/users/devarugved07012004')
+            let data = await apidata.json()
+            // console.log(data.name);
+            return data
+        }
+
+        async function displayData() {
+            let data = await fetchdata();
+            console.log(data);
+            console.log(data.login);
+            console.log(data.id);
+            console.log(data.avatar_url);
+            console.log(data.html_url);
+
+            console.log("-------------");
+            console.log("-------------");
+            console.log("-------------");
+            console.log("-------------");
+
+            // console.log('%c ', `font-size:100px; background:url(${data.avatar_url}) no-repeat; background-size:contain;`);
+            console.log("Name:",data.name);
+            console.log("Location:",data.location);
+            console.log("Blog:",data.blog);
+            console.log("Public Repos:",data.public_repos);
+            console.log("Created At:",data.created_at);
+        }
+
+        displayData();
+    </script>
+</html>
