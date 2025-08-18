@@ -10,7 +10,7 @@
 </body>
     <script>
         function fetchw(call){
-            fetch('https://api.open-meteo.com/v1/forecast?latitude=13.0878&longitude=80.2785&hourly=temperature_2m&forecast_days=1')
+            fetch('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m&current=temperature_2m&forecast_days=1')
             .then(response => response.json())
             .then(data => {
                 call(data,null)
@@ -25,10 +25,10 @@
                 console.error("Error fetching weather data:", error);
                 return;
             }
-
+            const curr = data.current.temperature_2m;
             const temperature = data.hourly.temperature_2m;
             const avg = temperature.reduce((sum, temp) => sum + temp, 0) / temperature.length;
-            console.log("Current temperature:", temperature[temperature.length - 1]);
+            console.log("Current temperature:", curr);
             console.log("Average temperature:", avg);
         }
         fetchw(handle);

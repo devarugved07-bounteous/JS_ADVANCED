@@ -16,7 +16,7 @@
 ];
 
 function fetchWeather(city) {
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&hourly=temperature_2m&forecast_days=1`;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&hourly=temperature_2m&current=temperature_2m&forecast_days=1`;
     return fetch(url)
         .then(response => response.json())
         .then(data => ({ city: city.name, data }))
