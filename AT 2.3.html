@@ -17,6 +17,8 @@
 
 function fetchWeather(city) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${city.lat}&longitude=${city.lon}&hourly=temperature_2m&current=temperature_2m&forecast_days=1`;
+    
+    
     return fetch(url)
         .then(response => response.json())
         .then(data => ({ city: city.name, data }))
@@ -30,7 +32,7 @@ Promise.all(cities.map(fetchWeather)).then(results => {
         } else {
             const temps = result.data.hourly.temperature_2m;
             const avg = temps.reduce((sum, t) => sum + t, 0) / temps.length;
-            const current = temps[temps.length - 1];
+            const current = result.data.current.temperature_2m;
             console.log(`${result.city} - Current: ${current}°C, Average: ${avg}°C`);
         }
     });
